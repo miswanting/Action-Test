@@ -27,7 +27,15 @@ jobs:
 
       - name: Custom
         run: |
-          dir .
-          dir .
           Get-Location
+          Get-ChildItem
+          Set-Location ..
+          Get-Location
+          Get-ChildItem
+          Set-Location ..
+          Get-Location
+          Get-ChildItem
+          Set-Location ..
+          Get-Location
+          Get-ChildItem
           dir C:\hostedtoolcache\windows\Python\3.9.0\x64
