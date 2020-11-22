@@ -28,16 +28,23 @@ jobs:
       - name: Custom
         shell: bash
         run: |
+          pwd
           ls
           cd ..
+          pwd
           ls
           cd ..
+          pwd
           ls
           cd ..
+          pwd
           ls
           cd C:/
+          pwd
           ls
           cd hostedtoolcache
+          pwd
           ls
           cd windows
+          pwd
           ls
