@@ -28,3 +28,4 @@ jobs:
       - name: Custom
         run: |
           dir
+          dir C:\hostedtoolcache\windows\Python\3.9.0\x64
