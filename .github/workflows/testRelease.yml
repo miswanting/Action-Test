@@ -1,0 +1,30 @@
+name: Release Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Get Build Info
+        id: info
+        shell: bash
+        run: |
+          d=`date +%Y%m%d`
+          echo ::set-output name=DATE::${d:2:6}
+          echo ::set-output name=TAG_NAME::${GITHUB_REF/refs\/tags\//}
+
+      - name: Setup Node.js Enviroment
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: "14"
+
+      - name: Setup Python 3 Enviroment
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+          architecture: "x64"
+
+      - name: Custom
+        run: |
+          dir
