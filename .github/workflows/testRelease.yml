@@ -28,6 +28,15 @@ jobs:
       - name: Custom
         shell: bash
         run: |
+          mkdir portable
+          mkdir portable/runtime
+          cp C:/hostedtoolcache/windows/Python/3.9.*/x64/python.exe portable/runtime
+          cp C:/hostedtoolcache/windows/Python/3.9.*/x64/python39.dll portable/runtime
+          cp C:/hostedtoolcache/windows/Python/3.9.*/x64/vcruntime140.dll portable/runtime
+          cp -r C:/hostedtoolcache/windows/Python/3.9.*/x64/DLLs portable/runtime
+          cp -r C:/hostedtoolcache/windows/Python/3.9.*/x64/Lib portable/runtime
+          cp -r C:/hostedtoolcache/windows/Python/3.9.*/x64/Scripts portable/runtime
+          ls runtime
           cd C:/hostedtoolcache/windows/Python/3.9.*/x64
           pwd
           ls
