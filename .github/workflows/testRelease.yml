@@ -28,9 +28,9 @@ jobs:
       - name: Custom
         shell: bash
         run: |
-          cd C:/hostedtoolcache/windows/Python/3.9.*
+          cd C:/hostedtoolcache/windows/Python/3.9.*/x64
           pwd
           ls
-          cd C:/hostedtoolcache/windows/node/14.*
+          cd C:/hostedtoolcache/windows/node/14.*/x64
           pwd
           ls
