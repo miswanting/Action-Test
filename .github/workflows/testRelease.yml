@@ -37,3 +37,7 @@ jobs:
           ls
           cd C:/
           ls
+          cd hostedtoolcache
+          ls
+          cd windows
+          ls
