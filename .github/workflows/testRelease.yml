@@ -29,4 +29,5 @@ jobs:
         run: |
           dir .
           dir .
+          Get-Location
           dir C:\hostedtoolcache\windows\Python\3.9.0\x64
