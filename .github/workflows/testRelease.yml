@@ -26,25 +26,14 @@ jobs:
           architecture: "x64"
 
       - name: Custom
+        shell: bash
         run: |
-          Get-Location
-          Get-ChildItem
-          Set-Location ..
-          Get-Location
-          Get-ChildItem
-          Set-Location ..
-          Get-Location
-          Get-ChildItem
-          Set-Location ..
-          Get-Location
-          Get-ChildItem
-          Set-Location C:\
-          Get-Location
-          Get-ChildItem
-          Set-Location hostedtoolcache
-          Get-Location
-          Get-ChildItem
-          Set-Location windows
-          Get-Location
-          Get-ChildItem
-          dir C:\hostedtoolcache\windows\Python\3.9.0\x64
+          ls
+          cd ..
+          ls
+          cd ..
+          ls
+          cd ..
+          ls
+          cd C:/
+          ls
