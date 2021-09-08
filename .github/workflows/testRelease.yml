@@ -39,6 +39,7 @@ jobs:
           New-Variable -Name Key -Value "../kkk"
           Icacls $Key /c /t /Inheritance:d
           TakeOwn /F $Key
+          Write-Output "$env:UserName"
           Icacls $Key /c /t /Grant:r ${env:UserName}:F
           Icacls $Key /c /t /Remove:g Administrator "Authenticated Users" BUILTIN\Administrators BUILTIN Everyone System Users
           Icacls $Key
