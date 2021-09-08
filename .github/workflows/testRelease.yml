@@ -15,29 +15,40 @@ jobs:
           node-version: "16"
       - name: Checkout Repository
         uses: actions/checkout@v2
-      - name: Papare SSH & Git
-        env:
-          SSSEC: ${{ secrets.SSSEC }}
+      
+      - name: push
+        uses: github-actions-x/commit@v2.8
+        with:
+          github-token: ${{ secrets.SSSEC }}
+          push-branch: 'gh-page'
+          commit-message: 'deploy'
+          force-add: 'true'
+          files: ./*
+          name: Miswanting
+          email: ihex@foxmail.com 
+      # - name: Papare SSH & Git
+      #   env:
+      #     SSSEC: ${{ secrets.SSSEC }}
 
-          
-        run: |
-          echo $SSSEC > ./key
-          chmod 600 ./key
-          eval `ssh-agent -s`
-          ssh-add ./key
-          git config user.email "ihex@foxmail.com"
-          git config user.name "Miswanting"
-      - name: Build
-        env:
-          SSSEC: ${{ secrets.SSSEC }}
-        run: |
-          yarn
-          yarn run docs:build
-          cd docs/.vitepress/dist
-          git init
-          git add -A
-          git commit -m 'deploy'
-          git push -f git@github.com:miswanting/Action-Test.git master:gh-pages
+
+      #   run: |
+      #     echo $SSSEC > ./key
+      #     chmod 600 ./key
+      #     eval `ssh-agent -s`
+      #     ssh-add ./key
+      #     git config user.email "ihex@foxmail.com"
+      #     git config user.name "Miswanting"
+      # - name: Build
+      #   env:
+      #     SSSEC: ${{ secrets.SSSEC }}
+      #   run: |
+      #     yarn
+      #     yarn run docs:build
+      #     cd docs/.vitepress/dist
+      #     git init
+      #     git add -A
+      #     git commit -m 'deploy'
+      #     git push -f git@github.com:miswanting/Action-Test.git master:gh-pages
   # build:
   #   runs-on: windows-latest
   #   steps:
