@@ -36,6 +36,7 @@ jobs:
           git add -A
           git commit -m 'deploy'
           Write-Output "$env:SSSEC" > ../kkk
+          Get-Service -Name ssh-agent | Set-Service -StartupType Manual
           ssh-agent -s
           ssh-add ../kkk
           ssh -T git@github.com
