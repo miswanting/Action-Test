@@ -24,8 +24,10 @@ jobs:
       - name: Build
         run: |
           Write-Output 123
+          Get-Location
           Get-Location | Write-Output
           Get-ChildItem
+          Write-Output 123
           yarn
           yarn run docs:build
       - name: upload
