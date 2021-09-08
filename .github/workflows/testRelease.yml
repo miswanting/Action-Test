@@ -23,6 +23,7 @@ jobs:
           node-version: "16"
       - name: Build
         run: |
+          Write-Output 123
           Get-Location | Write-Output
           Get-ChildItem
           yarn
