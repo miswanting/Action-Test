@@ -30,7 +30,9 @@ jobs:
           yarn run docs:build
           cd ..
           mv core/docs/.vitepress/dist dist
-          rm -r docs
+          if [[ -d "docs" ]] then
+            rm -r docs
+          fi
           rm -r core
           mv dist docs
 
