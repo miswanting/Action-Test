@@ -40,8 +40,8 @@ jobs:
           Icacls $Key /c /t /Inheritance:d
           TakeOwn /F $Key
           Write-Output "$env:UserName"
-          Icacls $Key /c /t /Grant:r ${env:UserName}:F
-          Icacls $Key /c /t /Remove:g Administrator "Authenticated Users" "NT AUTHORITY\SYSTEM" BUILTIN\Administrators BUILTIN\Users BUILTIN Everyone System Users
+          Icacls $Key /T /C /grant:r ${env:UserName}:F
+          Icacls $Key /T /C /remove:g Administrator "Authenticated Users" "NT AUTHORITY\SYSTEM" BUILTIN\Administrators BUILTIN\Users BUILTIN Everyone System Users
           Icacls $Key
           Remove-Variable -Name Key
           Get-Service -Name ssh-agent | Set-Service -StartupType Manual
