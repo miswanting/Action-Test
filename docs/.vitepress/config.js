@@ -1,4 +1,4 @@
 module.exports = {
-  base: '/Action-Test/'
+  base: '/Action-Test/',
   themeConfig: {}
 }
