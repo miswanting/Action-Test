@@ -15,31 +15,22 @@ jobs:
           node-version: "16"
       - name: Checkout Repository
         uses: actions/checkout@v2
-      # - name: Papare SSH & Git
-      #   env:
-      #     SSSEC: ${{ secrets.SSSEC }}
-      #   run: |
-      #     New-Variable -Name Key -Value sshpk
-      #     Write-Output "$env:SSSEC" > $Key
-      #     Icacls $Key /c /t /Inheritance:d
-      #     TakeOwn /F $Key
-      #     Icacls $Key /T /C /grant:r ${env:UserName}:F
-      #     Icacls $Key /T /C /remove:g Administrator "Authenticated Users" "NT AUTHORITY\SYSTEM" BUILTIN\Administrators BUILTIN\Users BUILTIN Everyone System Users
-      #     Icacls $Key
-      #     Get-Service -Name ssh-agent | Set-Service -StartupType Manual
-      #     ssh-agent -s
-      #     ssh-add $Key
-      #     ssh -T git@github.com
-      #     Remove-Variable -Name Key
-      #     git config user.email "ihex@foxmail.com"
-      #     git config user.name "Miswanting"
+      - name: Papare SSH & Git
+        env:
+          SSSEC: ${{ secrets.SSSEC }}
+        run: |
+          echo $SSSEC > ./key
+          ssh-agent -s
+          ssh-add ./key
+          git config user.email "ihex@foxmail.com"
+          git config user.name "Miswanting"
       - name: Build
         env:
           SSSEC: ${{ secrets.SSSEC }}
         run: |
           yarn
           yarn run docs:build
-          Set-Location docs/.vitepress/dist
+          cd docs/.vitepress/dist
           git init
           git add -A
           git commit -m 'deploy'
