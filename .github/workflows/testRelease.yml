@@ -30,7 +30,7 @@ jobs:
           push-branch: "gh-page"
           commit-message: "deploy"
           force-add: "true"
-          files: *
+          files: ./*
           name: Miswanting
           email: ihex@foxmail.com
       # - name: Papare SSH & Git
