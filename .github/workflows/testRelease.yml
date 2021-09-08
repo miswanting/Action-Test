@@ -15,12 +15,22 @@ jobs:
           node-version: "16"
       - name: Checkout Repository
         uses: actions/checkout@v2
+        with:
+          ref: "gh-page"
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          ref: "master"
+          path: "core"
       - name: Build
         run: |
+          cd core
           yarn
           yarn run docs:build
-          mv docs/.vitepress/dist dist
+          cd ..
+          mv core/docs/.vitepress/dist dist
           rm -r docs
+          rm -r core
           mv dist docs
 
       - name: push
