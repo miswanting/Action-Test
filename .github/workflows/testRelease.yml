@@ -19,7 +19,6 @@ jobs:
         run: |
           yarn
           yarn run docs:build
-          cd docs/.vitepress/dist
 
       - name: push
         uses: github-actions-x/commit@v2.8
@@ -28,7 +27,7 @@ jobs:
           push-branch: "gh-page"
           commit-message: "deploy"
           force-add: "true"
-          files: ./*
+          files: docs/.vitepress/dist/*
           name: Miswanting
           email: ihex@foxmail.com
       # - name: Papare SSH & Git
