@@ -1,0 +1,16 @@
+{
+  "name": "at",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/miswanting/Action-Test.git",
+  "author": "Miswanting <ihex@foxmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "docs:dev": "yarn vitepress dev docs",
+    "docs:build": "yarn vitepress build docs",
+    "docs:serve": "yarn vitepress serve docs"
+  },
+  "devDependencies": {
+    "vitepress": "latest"
+  }
+}
