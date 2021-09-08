@@ -2,7 +2,8 @@ name: Release Test
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
 
 jobs:
   build:
@@ -21,7 +22,10 @@ jobs:
         with:
           node-version: "16"
       - name: Build
-        run: npm run docs:build
+        run: |
+          npm i -g yarn
+          yarn
+          yarn run docs:build
       - name: upload
         uses: actions/upload-artifact@v2
         with: 
