@@ -15,21 +15,25 @@ jobs:
           node-version: "16"
       - name: Checkout Repository
         uses: actions/checkout@v2
-      
+      - name: Build
+        run: |
+          yarn
+          yarn run docs:build
+          cd docs/.vitepress/dist
+
       - name: push
         uses: github-actions-x/commit@v2.8
         with:
           github-token: ${{ secrets.SSSEC }}
-          push-branch: 'gh-page'
-          commit-message: 'deploy'
-          force-add: 'true'
+          push-branch: "gh-page"
+          commit-message: "deploy"
+          force-add: "true"
           files: ./*
           name: Miswanting
-          email: ihex@foxmail.com 
+          email: ihex@foxmail.com
       # - name: Papare SSH & Git
       #   env:
       #     SSSEC: ${{ secrets.SSSEC }}
-
 
       #   run: |
       #     echo $SSSEC > ./key
@@ -52,71 +56,71 @@ jobs:
   # build:
   #   runs-on: windows-latest
   #   steps:
-      # - name: Get Build Info
-      #   id: info
-      #   shell: bash
-      #   run: |
-      #     d=`date +%Y%m%d`
-      #     echo ::set-output name=DATE::${d:2:6}
-      #     echo ::set-output name=TAG_NAME::${GITHUB_REF/refs\/tags\//}
+  # - name: Get Build Info
+  #   id: info
+  #   shell: bash
+  #   run: |
+  #     d=`date +%Y%m%d`
+  #     echo ::set-output name=DATE::${d:2:6}
+  #     echo ::set-output name=TAG_NAME::${GITHUB_REF/refs\/tags\//}
 
-      # - name: Set up Node.js Enviroment
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: "16"
-      # - name: Checkout
-      #   uses: actions/checkout@v2
-      # - name: Papare SSH & Git
-      #   env:
-      #     SSSEC: ${{ secrets.SSSEC }}
-      #   run: |
-      #     New-Variable -Name Key -Value sshpk
-      #     Write-Output "$env:SSSEC" > $Key
-      #     Icacls $Key /c /t /Inheritance:d
-      #     TakeOwn /F $Key
-      #     Icacls $Key /T /C /grant:r ${env:UserName}:F
-      #     Icacls $Key /T /C /remove:g Administrator "Authenticated Users" "NT AUTHORITY\SYSTEM" BUILTIN\Administrators BUILTIN\Users BUILTIN Everyone System Users
-      #     Icacls $Key
-      #     Get-Service -Name ssh-agent | Set-Service -StartupType Manual
-      #     ssh-agent -s
-      #     ssh-add $Key
-      #     ssh -T git@github.com
-      #     Remove-Variable -Name Key
-      #     git config user.email "ihex@foxmail.com"
-      #     git config user.name "Miswanting"
-      # - name: Build
-      #   env:
-      #     SSSEC: ${{ secrets.SSSEC }}
-      #   run: |
-      #     yarn
-      #     yarn run docs:build
-      #     Set-Location docs/.vitepress/dist
-      #     git init
-      #     git add -A
-      #     git commit -m 'deploy'
-      #     git push -f git@github.com:miswanting/Action-Test.git master:gh-pages
-      # - name: Setup Python 3 Enviroment
-      #   uses: actions/setup-python@v2
-      #   with:
-      #     python-version: "3.9"
-      #     architecture: "x64"
+  # - name: Set up Node.js Enviroment
+  #   uses: actions/setup-node@v2
+  #   with:
+  #     node-version: "16"
+  # - name: Checkout
+  #   uses: actions/checkout@v2
+  # - name: Papare SSH & Git
+  #   env:
+  #     SSSEC: ${{ secrets.SSSEC }}
+  #   run: |
+  #     New-Variable -Name Key -Value sshpk
+  #     Write-Output "$env:SSSEC" > $Key
+  #     Icacls $Key /c /t /Inheritance:d
+  #     TakeOwn /F $Key
+  #     Icacls $Key /T /C /grant:r ${env:UserName}:F
+  #     Icacls $Key /T /C /remove:g Administrator "Authenticated Users" "NT AUTHORITY\SYSTEM" BUILTIN\Administrators BUILTIN\Users BUILTIN Everyone System Users
+  #     Icacls $Key
+  #     Get-Service -Name ssh-agent | Set-Service -StartupType Manual
+  #     ssh-agent -s
+  #     ssh-add $Key
+  #     ssh -T git@github.com
+  #     Remove-Variable -Name Key
+  #     git config user.email "ihex@foxmail.com"
+  #     git config user.name "Miswanting"
+  # - name: Build
+  #   env:
+  #     SSSEC: ${{ secrets.SSSEC }}
+  #   run: |
+  #     yarn
+  #     yarn run docs:build
+  #     Set-Location docs/.vitepress/dist
+  #     git init
+  #     git add -A
+  #     git commit -m 'deploy'
+  #     git push -f git@github.com:miswanting/Action-Test.git master:gh-pages
+  # - name: Setup Python 3 Enviroment
+  #   uses: actions/setup-python@v2
+  #   with:
+  #     python-version: "3.9"
+  #     architecture: "x64"
 
-      # - name: Custom
-      #   shell: bash
-      #   run: |
-      #     mkdir portable
-      #     ls portable
-      #     mkdir portable/runtime
-      #     ls portable/runtime
-      #     cp C:/hostedtoolcache/windows/Python/3.9.*/x64/python.exe portable/runtime
-      #     cp C:/hostedtoolcache/windows/Python/3.9.*/x64/python39.dll portable/runtime
-      #     cp C:/hostedtoolcache/windows/Python/3.9.*/x64/vcruntime140.dll portable/runtime
-      #     cp -r C:/hostedtoolcache/windows/Python/3.9.*/x64/DLLs portable/runtime
-      #     cp -r C:/hostedtoolcache/windows/Python/3.9.*/x64/Lib portable/runtime
-      #     cp -r C:/hostedtoolcache/windows/Python/3.9.*/x64/Scripts portable/runtime
-      #     cd C:/hostedtoolcache/windows/Python/3.9.*/x64
-      #     pwd
-      #     ls
-      #     cd C:/hostedtoolcache/windows/node/14.*/x64
-      #     pwd
-      #     ls
+  # - name: Custom
+  #   shell: bash
+  #   run: |
+  #     mkdir portable
+  #     ls portable
+  #     mkdir portable/runtime
+  #     ls portable/runtime
+  #     cp C:/hostedtoolcache/windows/Python/3.9.*/x64/python.exe portable/runtime
+  #     cp C:/hostedtoolcache/windows/Python/3.9.*/x64/python39.dll portable/runtime
+  #     cp C:/hostedtoolcache/windows/Python/3.9.*/x64/vcruntime140.dll portable/runtime
+  #     cp -r C:/hostedtoolcache/windows/Python/3.9.*/x64/DLLs portable/runtime
+  #     cp -r C:/hostedtoolcache/windows/Python/3.9.*/x64/Lib portable/runtime
+  #     cp -r C:/hostedtoolcache/windows/Python/3.9.*/x64/Scripts portable/runtime
+  #     cd C:/hostedtoolcache/windows/Python/3.9.*/x64
+  #     pwd
+  #     ls
+  #     cd C:/hostedtoolcache/windows/node/14.*/x64
+  #     pwd
+  #     ls
