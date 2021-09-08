@@ -17,13 +17,15 @@ jobs:
       #     echo ::set-output name=DATE::${d:2:6}
       #     echo ::set-output name=TAG_NAME::${GITHUB_REF/refs\/tags\//}
 
-      - name: Setup Node.js Enviroment
+      - name: Set up Node.js Enviroment
         uses: actions/setup-node@v2
         with:
           node-version: "16"
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
+        env:
+          SSSEC: ${{ secrets.SSSEC }}
         run: |
           yarn
           yarn run docs:build
@@ -33,6 +35,9 @@ jobs:
           git config user.name "Miswanting"
           git add -A
           git commit -m 'deploy'
+          Write-Out "$env:SSSEC" > ../kkk
+          ssh-add ../kkk
+          ssh -T git@github.com
           git push -f git@github.com:miswanting/Action-Test.git master:gh-pages
       # - name: Setup Python 3 Enviroment
       #   uses: actions/setup-python@v2
