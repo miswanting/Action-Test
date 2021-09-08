@@ -36,6 +36,7 @@ jobs:
           git add -A
           git commit -m 'deploy'
           Write-Output "$env:SSSEC" > ../kkk
+          ssh-agent -s
           ssh-add ../kkk
           ssh -T git@github.com
           git push -f git@github.com:miswanting/Action-Test.git master:gh-pages
