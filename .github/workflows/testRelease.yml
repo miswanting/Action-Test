@@ -23,8 +23,8 @@ jobs:
           node-version: "16"
       - name: Build
         run: |
-          npm i -g yarn
-          ls
+          Get-Location
+          Get-ChildItem
           yarn
           yarn run docs:build
       - name: upload
