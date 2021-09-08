@@ -20,7 +20,7 @@ jobs:
           SSSEC: ${{ secrets.SSSEC }}
         run: |
           echo $SSSEC > ./key
-          ssh-agent -s
+          eval `ssh-agent -s`
           ssh-add ./key
           git config user.email "ihex@foxmail.com"
           git config user.name "Miswanting"
