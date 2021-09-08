@@ -24,7 +24,7 @@ jobs:
           mv dist docs
 
       - name: push
-        uses: github-actions-x/commit@v2
+        uses: github-actions-x/commit@v2.8
         with:
           github-token: ${{ secrets.SSSEC }}
           push-branch: "gh-page"
