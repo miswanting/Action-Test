@@ -23,18 +23,10 @@ jobs:
           node-version: "16"
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build
+      - name: Papare SSH & Git
         env:
           SSSEC: ${{ secrets.SSSEC }}
         run: |
-          yarn
-          yarn run docs:build
-          Set-Location docs/.vitepress/dist
-          git init
-          git config user.email "ihex@foxmail.com"
-          git config user.name "Miswanting"
-          git add -A
-          git commit -m 'deploy'
           Write-Output "$env:SSSEC" > ../kkk
           New-Variable -Name Key -Value "../kkk"
           Icacls $Key /c /t /Inheritance:d
@@ -48,6 +40,18 @@ jobs:
           ssh-agent -s
           ssh-add ../kkk
           ssh -T git@github.com
+          git config user.email "ihex@foxmail.com"
+          git config user.name "Miswanting"
+      - name: Build
+        env:
+          SSSEC: ${{ secrets.SSSEC }}
+        run: |
+          yarn
+          yarn run docs:build
+          Set-Location docs/.vitepress/dist
+          git init
+          git add -A
+          git commit -m 'deploy'
           git push -f git@github.com:miswanting/Action-Test.git master:gh-pages
       # - name: Setup Python 3 Enviroment
       #   uses: actions/setup-python@v2
