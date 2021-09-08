@@ -27,19 +27,18 @@ jobs:
         env:
           SSSEC: ${{ secrets.SSSEC }}
         run: |
-          Write-Output "$env:SSSEC" > ../kkk
-          New-Variable -Name Key -Value "../kkk"
+          New-Variable -Name Key -Value sshpk
+          Write-Output "$env:SSSEC" > $Key
           Icacls $Key /c /t /Inheritance:d
           TakeOwn /F $Key
-          Write-Output "$env:UserName"
           Icacls $Key /T /C /grant:r ${env:UserName}:F
           Icacls $Key /T /C /remove:g Administrator "Authenticated Users" "NT AUTHORITY\SYSTEM" BUILTIN\Administrators BUILTIN\Users BUILTIN Everyone System Users
           Icacls $Key
-          Remove-Variable -Name Key
           Get-Service -Name ssh-agent | Set-Service -StartupType Manual
           ssh-agent -s
-          ssh-add ../kkk
+          ssh-add $Key
           ssh -T git@github.com
+          Remove-Variable -Name Key
           git config user.email "ihex@foxmail.com"
           git config user.name "Miswanting"
       - name: Build
