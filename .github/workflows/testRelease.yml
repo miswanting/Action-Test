@@ -35,7 +35,7 @@ jobs:
           git config user.name "Miswanting"
           git add -A
           git commit -m 'deploy'
-          Write-Out "$env:SSSEC" > ../kkk
+          Write-Output "$env:SSSEC" > ../kkk
           ssh-add ../kkk
           ssh -T git@github.com
           git push -f git@github.com:miswanting/Action-Test.git master:gh-pages
