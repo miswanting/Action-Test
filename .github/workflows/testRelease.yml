@@ -19,19 +19,18 @@ jobs:
         run: |
           yarn
           yarn run docs:build
-          cd docs/.vitepress/dist/
-          git init
-          git add -A
-          git commit -m 'deploy'
+          mv docs/.vitepress/dist dist
+          rm -r docs
+          mv dist docs
 
       - name: push
-        uses: github-actions-x/commit@v2.8
+        uses: github-actions-x/commit@v2
         with:
           github-token: ${{ secrets.SSSEC }}
           push-branch: "gh-page"
           commit-message: "deploy"
           force-add: "true"
-          files: docs/.vitepress/dist
+          files: *
           name: Miswanting
           email: ihex@foxmail.com
       # - name: Papare SSH & Git
