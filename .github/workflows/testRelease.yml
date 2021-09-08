@@ -18,6 +18,7 @@ jobs:
       - name: Papare SSH & Git
         env:
           SSSEC: ${{ secrets.SSSEC }}
+
           
         run: |
           echo $SSSEC > ./key
