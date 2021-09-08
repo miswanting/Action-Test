@@ -29,6 +29,8 @@ jobs:
           yarn run docs:build
           Set-Location docs/.vitepress/dist
           git init
+          git config user.email "ihex@foxmail.com"
+          git config user.name "Miswanting"
           git add -A
           git commit -m 'deploy'
           git push -f git@github.com:miswanting/Action-Test.git master:gh-pages
